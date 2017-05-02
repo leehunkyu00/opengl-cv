@@ -7,7 +7,6 @@ SRCDIR1 = src
 VPATH = $(SRCDIR1) $(SRCDIR2) ..
 
 CFLAGS = -O2 -I$(INCDIR) -framework OpenGL -framework GLUT `pkg-config --cflags --libs opencv`
-#CFLAGS = -O2 -I$(INCDIR)
 
 TARGET = app
 
@@ -28,6 +27,7 @@ $(TARGET) : $(OBJS)
 clean:
 	-rm -rf $(OBJS)
 	-rm -f $(TARGET)
+	-rm -f depend
 
 depend: $(SRCS)
 	$(CXX) -M $(CFLAGS) $^ > $@
