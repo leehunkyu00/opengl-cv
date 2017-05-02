@@ -1,7 +1,13 @@
 #include "Graphic.h"
 Graphic::Graphic() {
-    cout << "Graphic::Graphic()" << endl;
 }
 
 Graphic::~Graphic() {
+}
+// for test
+void Graphic::testCam() {
+    OpenCV opencv;
+    opencv.init(OpenCV::WEB_CAM);
+    opencv.showImage("helloworld!");
+
 }

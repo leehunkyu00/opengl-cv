@@ -1,4 +1,4 @@
-#include <iostream>// for test
+#include "OpenCV.h"
 
 using namespace std;
 
@@ -7,4 +7,6 @@ private:
 public:
     Graphic();
     ~Graphic();
+    // for test
+    void testCam();
 };

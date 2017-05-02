@@ -1,35 +1,24 @@
 CXX = g++
-LD = g++
-
-INCDIR = ../inc
-SRCDIR1 = src
-
-VPATH = $(SRCDIR1) $(SRCDIR2) ..
-
-CFLAGS = -O2 -I$(INCDIR) -framework OpenGL -framework GLUT `pkg-config --cflags --libs opencv`
+LD = -g
 
 TARGET = app
+CFLAGS = -O2 -framework OpenGL -framework GLUT $(shell pkg-config --cflags --libs opencv)
 
-SRCS = $(foreach dir, .. $(SRCDIR1), $(wildcard $(dir)/*.cpp))
-SRCS := $(notdir $(SRCS))
+SRCDIR = src
+SRCS = $(foreach dir, .. $(SRCDIR), $(wildcard $(dir)/*.cpp))
 
 OBJS = $(SRCS:.cpp=.o)
+OBJS := $(notdir $(OBJS))
 
 all: $(TARGET)
+	$(CXX) -o $(TARGET) $(OBJS) $(CFLAGS)
 
-$(TARGET) : $(OBJS)
-	$(LD) $^ -o$(TARGET) $(LIBS)
-
-
-%o:%c
-	$(CXX) $(CFLAGS) -c $< -o $@
+$(TARGET):
+#	@echo $(CFLAGS)
+#	@echo $(SRCS)
+#	@echo $(OBJS)
+	$(CXX) -c $(SRCS) $(CFLAGS)
 
 clean:
-	-rm -rf $(OBJS)
-	-rm -f $(TARGET)
-	-rm -f depend
-
-depend: $(SRCS)
-	$(CXX) -M $(CFLAGS) $^ > $@
-
--include depend
+	rm -f $(TARGET)
+	rm -f *.o
