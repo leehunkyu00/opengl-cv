@@ -14,3 +14,6 @@ ex)
 $ make all
 $ ./app
 $ make clean
+
+DOTO List
+1. Basic output image is openGL. OpenCV is supported for image to openGL.
