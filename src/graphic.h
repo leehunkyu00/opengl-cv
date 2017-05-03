@@ -1,12 +1,14 @@
 #include "OpenCV.h"
-
-using namespace std;
+#include "HKOpenGL.h"
 
 class Graphic {
 private:
+    int m_argc;
+    char **m_argv;
 public:
-    Graphic();
+    Graphic(int argc, char *argv[]);
     ~Graphic();
     // for test
     void testCam();
+    void testOpengl();
 };
